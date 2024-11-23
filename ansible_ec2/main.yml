@@ -1,0 +1,23 @@
+---
+- name: Create Ec2 Instance
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Create ED25519 key pair and save private key into a file
+    amazon.aws.ec2_key:
+       name: my_keypair
+       region: ap-south-1
+       key_material: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  
+  # - name: start an instance with a public IP address
+  #   amazon.aws.ec2_instance:
+  #     name: "public-compute-instance"
+  #     key_name: "my_keypair"
+  #     instance_type: t2.micro
+  #     region: ap-south-1
+  #     security_group: default
+  #     network_interfaces:
+  #      - assign_public_ip: true
+  #     image_id: ami-0dee22c13ea7a9a67
+  #     tags:
+  #      Environment: Testing
