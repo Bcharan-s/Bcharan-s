@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"docker_container","Source":"./module/docker_image","Dir":"module/docker_image"},{"Key":"docker_image","Source":"./module/docker_image","Dir":"module/docker_image"},{"Key":"nginx","Source":"./modules/docker_image","Dir":""}]}
