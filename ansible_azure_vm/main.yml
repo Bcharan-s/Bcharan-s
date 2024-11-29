@@ -1,0 +1,34 @@
+---
+
+- name: Creating Azure VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Create a resource group
+    azure_rm_resourcegroup:
+      name: resource
+      location: eastus
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+        resource_group: resource
+        name: myVnet
+        address_prefixes: "10.0.0.0/16"
+  - name: Create a subnet
+    azure_rm_subnet:
+          resource_group: resource
+          virtual_network_name: myVnet
+          name: mySubnet
+          address_prefix_cidr: "10.0.1.0/24"
+  - name: Create VM with defaults
+    azure_rm_virtualmachine:
+      resource_group: resource
+      name: testvm10
+      vm_size: Standard_B2ms
+      admin_username: admin
+      admin_password: pass
+      image:
+        offer: 0001-com-ubuntu-server-jammy 
+        publisher: Canonical
+        sku: 22_04-lts-gen2
+        version: latest
+      

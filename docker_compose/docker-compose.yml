@@ -1,0 +1,25 @@
+services:
+  flask-app:
+    container_name: flask-app
+    build: ./python
+    ports:
+      - "8000:5000"
+    depends_on: 
+      - mysql
+    networks: 
+     - flask_network
+  
+  mysql:
+   image: mysql:5.7
+   container_name: mysql
+   environment:
+      MYSQL_USER: myuser
+      MYSQL_DB: mydatabase
+      MYSQL_PASSWORD: sql-user123
+   networks:
+    - flask_network
+
+networks:
+  flask_network:
+    driver: bridge
+  

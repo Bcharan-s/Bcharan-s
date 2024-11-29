@@ -1,0 +1,12 @@
+services:
+  flask-app:
+    build: ./python
+    ports:
+     - "8000:5000"
+    deploy:
+      mode: replicated
+      replicas: 2
+
+  redis:
+    image: "redis:alpine"
+      
